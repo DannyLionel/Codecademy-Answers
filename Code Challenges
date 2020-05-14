@@ -1,0 +1,30 @@
+//Code Challenge 1:
+SELECT premium_users.user_id, plans.description
+FROM premium_users
+JOIN plans 
+WHERE plans.id = premium_users.membership_plan_id;
+
+//Code Challenge 2:
+ SELECT plays.user_id, plays.play_date, songs.title
+ FROM plays
+ JOIN songs
+ ON plays.song_id = songs.id;
+ 
+ //Code Challenge 3
+  SELECT users.id
+ FROM users
+ LEFT JOIN premium_users
+  ON users.id =  premium_users.user_id
+WHERE premium_users.user_id is NULL;
+
+//Code Challenge 4
+SELECT january.user_id
+FROM january
+LEFT JOIN february
+ON january.user_id = february.user_id
+WHERE february.user_id IS NULL;
+
+//Code Challenge 5
+ SELECT premium_users.user_id, premium_users.purchase_date, premium_users.cancel_date, months
+ FROM premium_users
+ CROSS JOIN months;
