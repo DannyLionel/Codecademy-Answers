@@ -10,21 +10,49 @@ WHERE plans.id = premium_users.membership_plan_id;
  JOIN songs
  ON plays.song_id = songs.id;
  
- //Code Challenge 3
+ //Code Challenge 3:
   SELECT users.id
  FROM users
  LEFT JOIN premium_users
   ON users.id =  premium_users.user_id
 WHERE premium_users.user_id is NULL;
 
-//Code Challenge 4
+//Code Challenge 4:
 SELECT january.user_id
 FROM january
 LEFT JOIN february
 ON january.user_id = february.user_id
 WHERE february.user_id IS NULL;
 
-//Code Challenge 5
+//Code Challenge 5:
  SELECT premium_users.user_id, premium_users.purchase_date, premium_users.cancel_date, months
  FROM premium_users
  CROSS JOIN months;
+ 
+ //Code Challenge 7:
+ SELECT *
+FROM songs
+UNION
+SELECT *
+FROM bonus_songs
+LIMIT 10;
+
+//Code Challenge 8:
+SELECT '2017-01-01' as month
+UNION
+SELECT '2017-02-01' as month
+UNION 
+SELECT '2017-03-01' as month;
+
+//Code Challenge 9:
+WITH play_count AS(
+SELECT song_id,
+   COUNT(*) AS 'times_played'
+FROM plays
+GROUP BY song_id
+)
+SELECT songs.title, songs.artist,
+play_count.times_played
+FROM play_count
+JOIN songs
+ON play_count.song_id = songs.id;
